@@ -2,6 +2,8 @@ package com.neosoft.androidcarousel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.neosoft.androidcarousel.repository.MainRepository
+import com.neosoft.androidcarousel.viewmodel.MainViewModel
 
 
 class MyViewModelFactory constructor(private val repository: MainRepository) : ViewModelProvider.Factory {

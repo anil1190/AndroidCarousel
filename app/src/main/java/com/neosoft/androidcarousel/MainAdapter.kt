@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.neosoft.androidcarousel.databinding.AdapterMovieBinding
+import com.neosoft.androidcarousel.models.Movie
 
 class MainAdapter : RecyclerView.Adapter<MainViewHolder>() {
 

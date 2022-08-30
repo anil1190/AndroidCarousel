@@ -1,7 +1,9 @@
-package com.neosoft.androidcarousel
+package com.neosoft.androidcarousel.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.neosoft.androidcarousel.repository.MainRepository
+import com.neosoft.androidcarousel.models.Movie
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
