@@ -1,91 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.neosoft.androidcarousel.viewmodel.MainViewModel" />
+    </data>
 <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".MainActivity">
+    android:fitsSystemWindows="true"
+    tools:context=".ui.MainActivity">
 
 <androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:fitsSystemWindows="true"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
+        android:fitsSystemWindows="true"
+        android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"
         tools:ignore="MissingConstraints">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
+        <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/height_250"
-            app:layout_scrollFlags="scroll|enterAlways" >
+            android:layout_height="wrap_content"
+            app:contentScrim="@color/purple_700"
+            app:layout_scrollFlags="scroll|snap|exitUntilCollapsed">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                app:layout_collapseMode="parallax"
+                android:layout_height="250dp">
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycler_view"
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/idViewPager"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="@dimen/margin"
-                    android:layout_marginBottom="@dimen/margin"
-                    tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:listitem="@layout/item_grid_image"
-                    tools:orientation="horizontal" />
+                    android:layout_height="200dp"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"
+                    />
 
-                <ImageView
-                    android:id="@+id/gradient_start"
-                    android:layout_width="@dimen/gradient_width"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/gradient"
-                    app:layout_constraintStart_toStartOf="parent" />
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tb_dots"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@android:color/transparent"
+                    app:layout_constraintBottom_toBottomOf="@id/idViewPager"
+                    app:layout_constraintTop_toTopOf="@+id/guideline"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:tabBackground="@drawable/tab_selector"
+                    app:tabGravity="center"
+                    app:tabIndicatorHeight="0dp" />
 
-                <ImageView
-                    android:id="@+id/gradient_end"
-                    android:layout_width="@dimen/gradient_width"
-                    android:layout_height="match_parent"
-                    android:scaleX="-1"
-                    android:src="@drawable/gradient"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                <androidx.constraintlayout.widget.Guideline
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/guideline"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.3"/>
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-        </androidx.appcompat.widget.Toolbar>
 
-        <RelativeLayout
-            android:id="@+id/search"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/height_80"
-            android:layout_marginTop="@dimen/margin"
-            android:padding="@dimen/padding_15"
-            android:background="@color/gray">
-
-            <SearchView
-                android:id="@+id/searchView"
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/rounded_corner"
-                android:queryHint="@string/mSearch"
-                android:iconifiedByDefault="false"
-                android:layout_alignParentTop="false"
-                android:layout_centerInParent="true"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:contentInsetLeft="0dp"
+                app:contentInsetStart="0dp"
+                android:layout_gravity="bottom"
+                app:contentInsetStartWithNavigation="0dp"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
-                />
+                <RelativeLayout
+                    android:id="@+id/search"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:padding="15dp"
+                    android:background="@color/gray">
 
-        </RelativeLayout>
+                    <SearchView
+                        android:id="@+id/searchView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/rounded_corner"
+                        android:queryHint="Search here"
+                        android:iconifiedByDefault="false"
+                        android:layout_alignParentTop="false"
+                        android:layout_centerInParent="true"
+
+                        />
+
+                </RelativeLayout>
+
+            </androidx.appcompat.widget.Toolbar>
 
 
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never"
+        android:fillViewport="true"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         xmlns:tools="http://schemas.android.com/tools"
@@ -93,6 +125,7 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         app:layout_constraintBottom_toBottomOf="@+id/app_bar"
+        android:animateLayoutChanges="true"
         android:paddingTop="@dimen/margin">
 
         <androidx.recyclerview.widget.RecyclerView
@@ -111,6 +144,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/no_data"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
             android:textColor="@android:color/holo_red_dark"
             android:textSize="@dimen/font_32x"
             android:textStyle="italic|bold"
@@ -123,6 +157,9 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

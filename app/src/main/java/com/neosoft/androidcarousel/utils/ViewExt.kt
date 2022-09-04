@@ -1,4 +1,4 @@
-package com.neosoft.androidcarousel
+package com.neosoft.androidcarousel.utils
 
 import android.view.View
 
